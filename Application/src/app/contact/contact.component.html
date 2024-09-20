@@ -1,0 +1,12 @@
+<div class="body">
+  <div class="container">
+    <h2>login your account</h2>
+    <form (ngSubmit)="onSubmit()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
+      <input type="submit" value="Sign In">
+    </form>
+    <br>
+    
+  </div>
+</div>

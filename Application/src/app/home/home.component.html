@@ -1,0 +1,30 @@
+<div class="body">
+  <div class="header">
+    <h1>Welcome to Online Notes Sharing Platform</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a routerLink="/notelist" class="notelist">Note List</a></li>
+        <li><a routerLink="/signup" class="login-link">Signup</a></li>
+        <li><a routerLink="/contact" class="login-link">Login</a></li>
+        <li><a routerLink="/about" class="admin-button">Admin</a></li>
+      </ul>
+    </nav>
+    <div class="search-bar">
+      <form id="search-form" (submit)="onSearch($event)">
+        <input type="text" id="search-query" name="query" placeholder="Search notes..." [(ngModel)]="query" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet> <!-- This will render NoteListComponent or SignupComponent -->
+
+    <div class="product" id="product-container">
+      <div *ngFor="let product of filteredProducts" class="product-item">
+        <img [src]="product.imageUrl" [alt]="product.title" />
+        <h3 class="product-title">{{ product.title }}</h3>
+        <p>${{ product.price }}</p>
+      </div>
+    </div>
+  </div>
+</div>

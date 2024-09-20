@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="card" style="background-color: #f0f0f0;">
+    <div class="card-header">
+      <h2 style="text-align: center;">Note List</h2>
+    </div>
+    <div class="card-body">
+      <div class="search-bar mb-3">
+        <form id="search-form" (submit)="onSearch($event)">
+          <input type="text" id="search-query" name="query" class="form-control" placeholder="Search by Title" [(ngModel)]="searchText" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+
+      <!-- Display only if there are filtered notes -->
+      <div *ngIf="filteredNotes.length > 0; else noResults">
+        <div class="row">
+          <div *ngFor="let note of filteredNotes" class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <u><h3 class="card-title">{{ note.title }}</h3></u>
+                <p class="card-text">{{ note.content }}</p>
+
+                <!-- Display the PDF if available -->
+                <div *ngIf="note.pdf" class="mt-2">
+                  <!-- View PDF button -->
+                  <button class="btn btn-primary" (click)="openPdfInNewTab(note.pdf)">View PDF</button>
+                  
+                  <!-- Download PDF button -->
+                  <button class="btn btn-success" (click)="openPdfInNewTab(note.pdf)">Download PDF</button>
+                </div>
+                <!-- End PDF display -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No results message -->
+      <ng-template #noResults>
+        <div class="alert alert-warning" role="alert">
+          No notes found matching the search criteria.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
